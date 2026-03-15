@@ -35,6 +35,7 @@ import AssistantManager from './components/AssistantManager';
 import WhatsAppButton from './components/WhatsAppButton';
 import Chatbot from './components/Chatbot';
 import BookDemo from './components/BookDemo';
+import CallCenterDemo from './components/CallCenterDemo';
 import { AppView, UserProfile, Notification } from './types';
 
 function App() {
@@ -57,6 +58,8 @@ function App() {
   const [notifications, setNotifications] = useState<Notification[]>([
     { id: '1', type: 'success', title: 'System Ready', message: 'Neural link established successfully.', timestamp: 'Now', read: false }
   ]);
+
+  const [showDemoApp, setShowDemoApp] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -190,6 +193,11 @@ function App() {
       case AppView.ADMIN_LOGIN: return <AdminLogin onNavigate={navigate} />;
       case AppView.CUSTOMER_LOGIN: return <CustomerLogin onNavigate={navigate} />;
 
+      // Demo App
+      case AppView.DEMO_APP: 
+        setShowDemoApp(true);
+        return <Home onNavigate={navigate} />;
+
       // Specialized Flagship Product
       case AppView.VIRTUAL_CALL_CENTER:
         return <CallCenterSolution onNavigate={navigate} />;
@@ -277,6 +285,7 @@ function App() {
             onNavigate={navigate} 
             isDarkMode={isDarkMode}
             onToggleTheme={() => setIsDarkMode(v => !v)}
+            onOpenDemo={() => setShowDemoApp(true)}
           />
           {renderPublicView()}
           <Footer onNavigate={navigate} />
@@ -284,6 +293,14 @@ function App() {
       )}
       <WhatsAppButton />
       <Chatbot />
+      
+      {/* Call Center Demo Modal */}
+      {showDemoApp && (
+        <CallCenterDemo 
+          onClose={() => setShowDemoApp(false)} 
+          isDarkMode={isDarkMode} 
+        />
+      )}
     </div>
     </LanguageProvider>
   );

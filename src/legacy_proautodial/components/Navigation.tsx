@@ -10,9 +10,10 @@ interface NavigationProps {
   onNavigate: (view: AppView) => void;
   isDarkMode: boolean;
   onToggleTheme: () => void;
+  onOpenDemo?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate, isDarkMode, onToggleTheme }) => {
+const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate, isDarkMode, onToggleTheme, onOpenDemo }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
@@ -221,6 +222,15 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate, isDark
               )}
             </div>
 
+            {onOpenDemo && (
+              <button 
+                onClick={onOpenDemo}
+                className="px-6 py-2.5 bg-emerald-500 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2"
+              >
+                <i className="fas fa-play"></i>
+                Demo
+              </button>
+            )}
             <button 
               onClick={() => onNavigate(AppView.BOOK_DEMO)}
               className="px-6 py-2.5 bg-brand text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-brand/20"
@@ -257,6 +267,15 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate, isDark
             +91-8898-7-24-365
             <span className="ml-2 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest bg-brand/10 text-brand rounded-full animate-pulse">24×7×365</span>
           </a>
+          {onOpenDemo && (
+            <button 
+              onClick={() => { onOpenDemo(); setIsMenuOpen(false); }} 
+              className="w-full py-4 bg-emerald-500 text-white rounded-2xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
+            >
+              <i className="fas fa-play"></i>
+              Try Demo
+            </button>
+          )}
           <div className="grid grid-cols-2 gap-4">
             <button 
               onClick={() => { onNavigate(AppView.CUSTOMER_LOGIN); setIsMenuOpen(false); }} 

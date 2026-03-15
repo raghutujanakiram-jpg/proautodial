@@ -79,7 +79,10 @@ export enum AppView {
   CUSTOMER_LOGIN = 'customer_login',
 
   // Legacy Product Integration
-  LEGACY_PRODUCT = 'legacy_product'
+  LEGACY_PRODUCT = 'legacy_product',
+
+  // Call Center Demo Application
+  DEMO_APP = 'demo_app'
 }
 
 export type CurrencyCode =
