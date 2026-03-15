@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -252,6 +253,7 @@ function App() {
   };
 
   return (
+    <LanguageProvider>
     <div className="min-h-screen bg-slate-50 dark:bg-[#0B0E14] text-slate-900 dark:text-white transition-colors duration-500 selection:bg-brand/30 overflow-x-hidden">
       {isPortalMode ? (
         <div className="flex min-h-screen">
@@ -283,6 +285,7 @@ function App() {
       <WhatsAppButton />
       <Chatbot />
     </div>
+    </LanguageProvider>
   );
 }
 

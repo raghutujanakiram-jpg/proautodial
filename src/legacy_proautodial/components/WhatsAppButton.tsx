@@ -2,7 +2,7 @@
 import React from 'react';
 
 const WhatsAppButton: React.FC = () => {
-  const whatsappNumber = "1234567890"; // Placeholder number
+  const whatsappNumber = "919949456564";
   const message = encodeURIComponent("Hello! I'm interested in ProAutoDial solutions.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 

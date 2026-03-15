@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { AppView } from '../types';
 import Logo from '../Logo';
+import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface NavigationProps {
   currentView: AppView;
@@ -14,6 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate, isDark
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const mainLinks = [
     { label: 'Home', view: AppView.HOME },
@@ -181,6 +184,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate, isDark
               </div>
               <span className="ml-2 px-2 py-0.5 text-[9px] font-black uppercase tracking-widest bg-brand/10 text-brand rounded-full animate-pulse">24×7×365</span>
             </a>
+            <LanguageSelector />
             <button 
               onClick={onToggleTheme}
               aria-label="Toggle theme"
